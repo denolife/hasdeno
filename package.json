@@ -1,0 +1,37 @@
+{
+	"name": "hasdeno",
+	"version": "1.0.0",
+	"description": "Check if Deno is installed",
+	"repository": "https://github.com/denolife/hasdeno.git",
+	"author": "Mathias Wulff <m@rawu.dk>",
+	"license": "MIT",
+	"main": "dist/index.js",
+	"bin": {
+		"hasDeno": "dist/cli.js"
+	},
+	"scripts": {
+		"build": "tsc --outdir dist/ src/index.ts src/cli.ts",
+		"test": "echo Tests are not automated yet",
+		"fmt": "prettier --write src/*.*",
+		"prepublishOnly": "yarn build && (is-ci || yarn bump)",
+		"bump": "yarn is-git-clean && bump --tag 'v%s'",
+		"is-git-clean": "(git diff --quiet --exit-code --cached && git diff --quiet --exit-code) || (echo Please commit or stash changes && exit 1)"
+	},
+	"devDependencies": {
+		"@types/node": "^14.0.5",
+		"is-ci": "^2.0.0",
+		"prettier": "^2.0.5",
+		"typescript": "^3.9.3",
+		"version-bump-prompt": "^6.0.3",
+		"yarn": "^1.22.4"
+	},
+	"keywords": [
+		"deno"
+	],
+	"prettier": {
+		"useTabs": true,
+		"printWidth": 100,
+		"singleQuote": true,
+		"bracketSpacing": false
+	}
+}

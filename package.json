@@ -1,6 +1,6 @@
 {
 	"name": "hasdeno",
-	"version": "1.0.0",
+	"version": "1.0.1",
 	"description": "Check if Deno is installed",
 	"repository": "https://github.com/denolife/hasdeno.git",
 	"author": "Mathias Wulff <m@rawu.dk>",

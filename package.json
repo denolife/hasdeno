@@ -5,12 +5,14 @@
 	"repository": "https://github.com/denolife/hasdeno.git",
 	"author": "Mathias Wulff <m@rawu.dk>",
 	"license": "MIT",
-	"main": "dist/index.js",
+	"main": "dist/index.mjs",
 	"bin": {
 		"hasDeno": "dist/cli.js"
 	},
 	"scripts": {
-		"build": "tsc --outdir dist/ src/index.ts src/cli.ts",
+		"build": "shx rm -r dist && yarn build-es6 && yarn build-cli",
+		"build-es6": "tsc --target es6 --outdir dist/ src/index.ts && shx mv dist/index.js dist/index.mjs",
+		"build-cli": "tsc --outdir dist/ src/index.ts src/cli.ts",
 		"test": "echo Tests are not automated yet",
 		"fmt": "prettier --write src/*.*",
 		"prepublishOnly": "yarn build && (is-ci || yarn bump)",
@@ -21,6 +23,7 @@
 		"@types/node": "^14.0.5",
 		"is-ci": "^2.0.0",
 		"prettier": "^2.0.5",
+		"shx": "^0.3.2",
 		"typescript": "^3.9.3",
 		"version-bump-prompt": "^6.0.3",
 		"yarn": "^1.22.4"
